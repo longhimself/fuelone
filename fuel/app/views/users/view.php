@@ -31,11 +31,8 @@
 </head>
 <body>
 <header>
-    <div class="row container">
-        <div class="col-lg-6">
-        </div>
-        <div class="col-lg-6">
-        </div>
+    <div class="container">
+        <div id="logo"></div>
     </div>
 </header>
 <div class="container">
@@ -43,8 +40,8 @@
         <h2><?= $user->name?></h2>
         <p>ID: <?= $user->id ?></p>
         <p>Email: <?= $user->email ?></p>
-        <p>Joined at: <?= \Fuel\Core\Date::time($user->created_at) ?></p>
-        <p>Updated at: <?= \Fuel\Core\Date::time($user->updated_at) ?></p>
+        <p>Joined at: <?= $user->created_at ?></p>
+        <p>Updated at: <?= $user->updated_at ?></p>
     </section>
     <footer>
         <p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
