@@ -11,8 +11,8 @@ class Create_users
 			'name' => array('null' => false, 'type' => 'text'),
 			'email' => array('constraint' => 50, 'null' => false, 'type' => 'varchar'),
 			'password' => array('constraint' => 125, 'null' => false, 'type' => 'varchar'),
-			'created_at' => array('constraint' => '11', 'null' => true, 'type' => 'int', 'unsigned' => true),
-			'updated_at' => array('constraint' => '11', 'null' => true, 'type' => 'int', 'unsigned' => true),
+			'created_at' => array('constraint' => '11', 'null' => true, 'type' => 'timestamp', 'unsigned' => true),
+			'updated_at' => array('constraint' => '11', 'null' => true, 'type' => 'timestamp', 'unsigned' => true),
 		), array('id'));
 	}
 
