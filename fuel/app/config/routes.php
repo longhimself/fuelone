@@ -6,5 +6,6 @@ return array(
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
     'users/view(/:id)?' => array('users/view'),
     'users/edit(/:id)?' => array('users/edit', 'id' => 'edit'),
+    'users/delete(/:id)?' => array('users/delete', 'id' => 'delete'),
     'users/add' => array('users/add', 'id' => 'add'),
 );

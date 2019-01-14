@@ -31,7 +31,7 @@
     </style>
     <script>
         jQuery(document).ready(function($) {
-            $(".clickable-row").click(function() {
+            $(".clickable").click(function() {
                 window.location = $(this).data("href");
             });
         })
@@ -39,15 +39,31 @@
 </head>
 <body>
 <header>
-    <div class="row container">
-        <div class="col-lg-6">
-        </div>
-        <div class="col-lg-6">
-        </div>
+    <div class="container">
+        <div id="logo"></div>
     </div>
 </header>
 <div class="container">
-    <table class="table table-striped table-hover" id="taskList">
+<?php if (Session::get_flash('success')): ?>
+    <div class="alert alert-success">
+        <strong>Success</strong>
+        <p>
+            <?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
+        </p>
+    </div>
+<?php endif; ?>
+<?php if (Session::get_flash('error')): ?>
+    <div class="alert alert-danger">
+        <strong>Error</strong>
+        <p>
+            <?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
+        </p>
+    </div>
+<?php endif; ?>
+</div>
+<div class="container">
+    <button class="btn btn-primary glyphicon glyphicon-plus" onclick="window.location='/users/add'"> Register</button>
+    <table style="margin-top: 10px;" class="table table-striped table-hover table-bordered">
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -59,15 +75,18 @@
         </thead>
         <tbody>
         <?php foreach($users as $user): ?>
-        <tr class="clickable-row" data-href="<?= 'users/view/'.$user->id?>">
+        <tr>
             <td><?= $user->id?></td>
-            <td><?= $user->name?></td>
+            <td class="clickable" data-href="<?= 'users/view/'.$user->id?>"><?= $user->name ?></td>
             <td><?= $user->email?></td>
-            <td><?= Date::time($user->created_at)?></td>
+            <td><?= date("m/d/Y", strtotime($user->created_at));?></td>
+            <td><button class="btn btn-primary glyphicon glyphicon-edit" onclick="window.location='<?='/users/edit/'.$user->id?>'"> Edit</button>
+                <a href=<?= "/users/delete/".$user->id?> class="btn btn-danger glyphicon glyphicon-remove" onclick="confirm('<?='Do you want to remove '.$user->name.' from the list?' ?>');"> Remove</a></td>
         </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
+    <div class="col-md-offset-5"><?=  $pagination->render();?></div>
     <footer>
         <p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
         <p>

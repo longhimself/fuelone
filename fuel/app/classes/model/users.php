@@ -20,26 +20,12 @@ class Model_Users extends Orm\Model
 		),
 		"created_at" => array(
 			"label" => "Created at",
-			"data_type" => "int",
 		),
 		"updated_at" => array(
 			"label" => "Updated at",
-			"data_type" => "int",
 		),
 	);
 
-	protected static $_observers = array(
-		'Orm\Observer_CreatedAt' => array(
-			'events' => array('before_insert'),
-			'property' => 'created_at',
-			'mysql_timestamp' => false,
-		),
-		'Orm\Observer_UpdatedAt' => array(
-			'events' => array('before_update'),
-			'property' => 'updated_at',
-			'mysql_timestamp' => false,
-		),
-	);
 
 	protected static $_table_name = 'users';
 
